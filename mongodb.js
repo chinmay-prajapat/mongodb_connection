@@ -1,7 +1,12 @@
-const mongodb = require("mongodb");
-const MongoClient = mongodb.MongoClient;
+// const mongodb = require("mongodb");
+// const MongoClient = mongodb.MongoClient;
+// const ObjectID = mongodb.ObjectId;
+const { MongoClient, ObjectID } = require("mongodb");
 const connectionURL = "mongodb://127.0.0.1:27017";
 const databaseName = "task-manager";
+
+const id = new ObjectID();
+console.log(id.getTimestamp());
 
 MongoClient.connect(
   connectionURL,
@@ -11,19 +16,20 @@ MongoClient.connect(
       return console.log("Unable to connect to databases!");
     }
     const db = client.db(databaseName);
-    // db.collection("users").insertOne(
-    //   {
-    //     name: "Andrew",
-    //     age: 27,
-    //   },
-    //   (error, result) => {
-    //     if (error) {
-    //       return console.log("Unable to insert user");
-    //     }
-    //     // console.log(result.ops); //It does not support in 4x version of mongoDB
-    //     console.log(result);
-    //   }
-    // );
+    db.collection("users").insertOne(
+      {
+        _id: id,
+        name: "Vijay",
+        age: 27,
+      },
+      (error, result) => {
+        if (error) {
+          return console.log("Unable to insert user");
+        }
+        // console.log(result.ops); //It does not support in 4x version of mongoDB
+        console.log(result);
+      }
+    );
     // db.collection("users").insertMany(
     //   [
     //     {
@@ -42,24 +48,23 @@ MongoClient.connect(
     //     console.log(result);
     //   }
     // );
-    db.collection("tasks").insertMany(
-      [
-        {
-          description: "cleaning",
-          completed: false,
-        },
-        {
-          description: "study",
-          completed: true,
-        },
-      ],
-      (error, result) => {
-        if (error) {
-          return console.log("Oops could not insert the data");
-        }
-        console.log(result);
-      }
-    );
+    // db.collection("tasks").insertMany(
+    //   [
+    //     {
+    //       description: "cleaning",
+    //       completed: false,
+    //     },
+    //     {
+    //       description: "study",
+    //       completed: true,
+    //     },
+    //   ],
+    //   (error, result) => {
+    //     if (error) {
+    //       return console.log("Oops could not insert the data");
+    //     }
+    //     console.log(result);
+    //   }
+    // );
   }
 );
-//
