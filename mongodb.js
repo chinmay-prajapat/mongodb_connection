@@ -6,7 +6,7 @@ const connectionURL = "mongodb://127.0.0.1:27017";
 const databaseName = "task-manager";
 
 // const id = new ObjectID(); //just to see what is there in an id.
-console.log(id.getTimestamp());
+// console.log(id.getTimestamp());
 
 MongoClient.connect(
   connectionURL,
@@ -16,7 +16,15 @@ MongoClient.connect(
       return console.log("Unable to connect to databases!");
     }
     const db = client.db(databaseName);
-
+    db.collection("users").findOne(
+      { _id: new ObjectID("61913acc3f43687221d3e40a") },
+      (error, user) => {
+        if (error) {
+          return console.log("could not fetch the data");
+        }
+        console.log(user);
+      }
+    );
     // db.collection("users").insertOne(
     //   {
     //     _id: id,
