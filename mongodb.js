@@ -5,7 +5,7 @@ const { MongoClient, ObjectID } = require("mongodb");
 const connectionURL = "mongodb://127.0.0.1:27017";
 const databaseName = "task-manager";
 
-const id = new ObjectID();
+// const id = new ObjectID(); //just to see what is there in an id.
 console.log(id.getTimestamp());
 
 MongoClient.connect(
@@ -16,20 +16,21 @@ MongoClient.connect(
       return console.log("Unable to connect to databases!");
     }
     const db = client.db(databaseName);
-    db.collection("users").insertOne(
-      {
-        _id: id,
-        name: "Vijay",
-        age: 27,
-      },
-      (error, result) => {
-        if (error) {
-          return console.log("Unable to insert user");
-        }
-        // console.log(result.ops); //It does not support in 4x version of mongoDB
-        console.log(result);
-      }
-    );
+
+    // db.collection("users").insertOne(
+    //   {
+    //     _id: id,
+    //     name: "Vijay",
+    //     age: 27,
+    //   },
+    //   (error, result) => {
+    //     if (error) {
+    //       return console.log("Unable to insert user");
+    //     }
+    //     // console.log(result.ops); //It does not support in 4x version of mongoDB
+    //     console.log(result);
+    //   }
+    // );
     // db.collection("users").insertMany(
     //   [
     //     {
