@@ -83,5 +83,23 @@ MongoClient.connect(
     //     console.log(result);
     //   }
     // );
+
+    db.collection("tasks").findOne(
+      { _id: new ObjectID("619078dd82e8e06daa3bbbf6") },
+      (error, data) => {
+        if (error) {
+          return console.log("No doc found");
+        }
+        console.log(data);
+      }
+    );
+    db.collection("tasks")
+      .find({ completed: false })
+      .toArray((error, data) => {
+        if (error) {
+          return console.log("No match found");
+        }
+        console.log(data);
+      });
   }
 );
