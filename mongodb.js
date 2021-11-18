@@ -17,18 +17,25 @@ MongoClient.connect(
     if (error) {
       return console.log("Unable to connect to databases!");
     }
+   
     const db = client.db(databaseName);
-    db.collection('tasks').updateMany({ completed: false }, { $set: { completed: true } }, (err, res) => {
-      if (err) {
-      return console.log(err)
-      }
+    db.collection('tasks').deleteMany({ description: 'FootBall' }).then((res) => {
       console.log(res)
-  })
- 
+    }).catch((err) => {
+      console.log(err)
+    })
   }
 );
+//updateMany
 
-//UpdateMany
+
+// db.collection('tasks').updateMany({ completed: false }, { $set: { completed: true } }, (err, res) => {
+//   if (err) {
+//   return console.log(err)
+//   }
+//   console.log(res)
+// })
+// //UpdateMany
 
 // db.collection('users').updateMany({ age: 37 }, { $inc: { age: 10 } }).then((res) => {
 //   console.log(res)
