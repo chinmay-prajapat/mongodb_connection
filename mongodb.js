@@ -18,25 +18,30 @@ MongoClient.connect(
       return console.log("Unable to connect to databases!");
     }
     const db = client.db(databaseName);
-
- //Using promise
+    db.collection('users').updateOne({ _id: new ObjectID("6190779dfefea32f1f973fc2") }, { $inc: { age: 10 } }).then((res) => {
+      console.log(res)
+    }).catch((err) => {
+      console.log(err)
+    })
+ 
+  }
+);
+//Using promise
     
  
     //AnotherWay
 
 
-        const updatePromise=  db.collection('users').updateOne({ _id: new ObjectID("6190779dfefea32f1f973fc2") }, {
-      $set: {
-    names:'Chinmay'
-      }
-  })
-    updatePromise.then((res) => {
-      return console.log(res)
-    }).catch((err) => {
-      console.log(err)
-    })
-  }
-);
+  //   const updatePromise=  db.collection('users').updateOne({ _id: new ObjectID("6190779dfefea32f1f973fc2") }, {
+  //     $set: {
+  //   names:'Chinmay'
+  //     }
+  // })
+  //   updatePromise.then((res) => {
+  //     return console.log(res)
+  //   }).catch((err) => {
+  //     console.log(err)
+  //   })
 
    // OneWay
  
