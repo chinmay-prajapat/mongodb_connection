@@ -19,13 +19,22 @@ MongoClient.connect(
     }
    
     const db = client.db(databaseName);
-    db.collection('tasks').deleteMany({ description: 'FootBall' }).then((res) => {
-      console.log(res)
+    db.collection('tasks').deleteOne({ description: 'serial' }).then((res) => {
+  console.log(res)
     }).catch((err) => {
-      console.log(err)
-    })
+  console.log(err)
+})
   }
 );
+
+//deleteMany()
+
+// db.collection('tasks').deleteMany({ description: 'FootBall' }).then((res) => {
+//   console.log(res)
+// }).catch((err) => {
+//   console.log(err)
+// })
+
 //updateMany
 
 
