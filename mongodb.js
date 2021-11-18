@@ -18,7 +18,12 @@ MongoClient.connect(
       return console.log("Unable to connect to databases!");
     }
     const db = client.db(databaseName);
-   
+    db.collection('tasks').updateMany({ completed: false }, { $set: { completed: true } }, (err, res) => {
+      if (err) {
+      return console.log(err)
+      }
+      console.log(res)
+  })
  
   }
 );
