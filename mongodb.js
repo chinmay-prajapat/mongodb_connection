@@ -18,14 +18,26 @@ MongoClient.connect(
       return console.log("Unable to connect to databases!");
     }
     const db = client.db(databaseName);
-    db.collection('users').updateOne({ _id: new ObjectID("6190779dfefea32f1f973fc2") }, { $inc: { age: 10 } }).then((res) => {
-      console.log(res)
-    }).catch((err) => {
-      console.log(err)
-    })
+   
  
   }
 );
+
+//UpdateMany
+
+// db.collection('users').updateMany({ age: 37 }, { $inc: { age: 10 } }).then((res) => {
+//   console.log(res)
+//    }).catch((err) => {
+//   console.log(err)
+// })
+
+//$inc
+
+// db.collection('users').updateOne({ _id: new ObjectID("6190779dfefea32f1f973fc2") }, { $inc: { age: 10 } }).then((res) => {
+//   console.log(res)
+// }).catch((err) => {
+//   console.log(err)
+// })
 //Using promise
     
  
