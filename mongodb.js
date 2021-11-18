@@ -21,9 +21,13 @@ MongoClient.connect(
 
  //Using promise
     
-  const updatePromise=  db.collection('users').updateOne({ _id: new ObjectID("6190779dfefea32f1f973fc2") }, {
+ 
+    //AnotherWay
+
+
+        const updatePromise=  db.collection('users').updateOne({ _id: new ObjectID("6190779dfefea32f1f973fc2") }, {
       $set: {
-    name:'Chinmay'
+    names:'Chinmay'
       }
   })
     updatePromise.then((res) => {
@@ -33,6 +37,21 @@ MongoClient.connect(
     })
   }
 );
+
+   // OneWay
+ 
+ 
+    // const updatePromise=  db.collection('users').updateOne({ _id: new ObjectID("6190779dfefea32f1f973fc2") }, {
+  //     $set: {
+  //   names:'Chinmay'
+  //     }
+  // })
+  //   updatePromise.then((res) => {
+  //     return console.log(res)
+  //   }).catch((err) => {
+  //     console.log(err)
+  //   })
+    
 
 //Using callback
 
