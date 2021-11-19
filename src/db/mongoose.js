@@ -32,12 +32,9 @@ const User = mongoose.model('User', {
         minlength: 7,
         maxlength:10,
         validate(value) {
-            if (value === "password") {
-            throw new Error("should not have 'passsword' as password")
-           
-                
-            }
-                
+          if(value.includes('password')){
+              throw new Error('you should not have password as password')
+          }
         }
         },
     
@@ -56,7 +53,7 @@ const User = mongoose.model('User', {
 const me = new User({
     name: "Mike",
     email: 'MYEMAIL@GAMIL.COM',
-    password:'pass'
+    password:'password'
     
 })
 
