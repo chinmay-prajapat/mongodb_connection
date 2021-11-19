@@ -13,5 +13,8 @@
     "mongodb": "^4.1.4",
     "mongoose": "^6.0.13",
     "validator": "^13.7.0"
+  },
+  "devDependencies": {
+    "prettier": "2.4.1"
   }
 }
