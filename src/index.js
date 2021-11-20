@@ -2,7 +2,6 @@ const express = require("express")
 require("./db/mongoose")
 const User = require("./models/user")
 const Task = require("./models/task")
-const { ObjectID } = require("bson")
 const app = express()
 const port = process.env.PORT || 3000
 
@@ -47,6 +46,27 @@ app.post("/tasks", (req, res) => {
     })
     .catch((e) => {
       res.status(400).send(e)
+    })
+})
+
+app.get("/tasks", (req, res) => {
+  Task.find({})
+    .then((task) => {
+      res.send(task)
+    })
+    .catch((e) => {
+      res.status(500).send(e)
+    })
+})
+
+app.get("/tasks/:id", (req, res) => {
+  const _id = req.params.id
+  Task.findById(_id)
+    .then((task) => {
+      !task ? res.status(404).send("Task not found") : res.send(task)
+    })
+    .catch((e) => {
+      res.status(500).send()
     })
 })
 app.listen(port, () => console.log("Server is up on port" + port))
