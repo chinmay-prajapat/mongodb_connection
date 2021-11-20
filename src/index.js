@@ -2,6 +2,7 @@ const express = require("express")
 require("./db/mongoose")
 const User = require("./models/user")
 const Task = require("./models/task")
+const { ObjectID } = require("bson")
 const app = express()
 const port = process.env.PORT || 3000
 
@@ -23,9 +24,25 @@ app.get("/users", (req, res) => {
     .then((users) => {
       res.send(users)
     })
-    .catch((e) => {})
+    .catch((e) => {
+      res.status(500).send(e)
+    })
 })
-
+app.get("/users/:id", (req, res) => {
+  const _id = req.params.id
+  User.findById(_id)
+    .then((user) => {
+      if (!user) {
+        res.status(404).send()
+      }
+      //   !user ? res.status(404).
+      //   send() : res.send(user)
+      res.send(user)
+    })
+    .catch((e) => {
+      res.status(500).send()
+    })
+})
 app.post("/tasks", (req, res) => {
   const task = new Task(req.body)
   task
