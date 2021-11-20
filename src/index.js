@@ -48,7 +48,6 @@ app.post("/tasks", (req, res) => {
       res.status(400).send(e)
     })
 })
-
 app.get("/tasks", (req, res) => {
   Task.find({})
     .then((task) => {
