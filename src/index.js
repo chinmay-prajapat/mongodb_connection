@@ -35,6 +35,24 @@ app.get("/users/:id", async (req, res) => {
     res.status(500).send(e)
   }
 })
+
+app.patch("/users/:id", async (req, res) => {
+  try {
+    const user = await User.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+      runValidators: true,
+    })
+
+    if (!user) {
+      return res.status(404).send()
+    }
+
+    res.send(user)
+  } catch (e) {
+    res.status(400).send(e)
+  }
+})
+
 app.post("/tasks", async (req, res) => {
   const task = new Task(req.body)
 
@@ -45,6 +63,7 @@ app.post("/tasks", async (req, res) => {
     res.status(400).send(e)
   }
 })
+
 app.get("/tasks", async (req, res) => {
   try {
     const tasks = await Task.find({})
